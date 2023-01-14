@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -15,10 +16,26 @@ namespace App
     /// </summary>
     internal static class Writer
     {
-        private static readonly string s_workingDir = AppContext.BaseDirectory;
-        private static readonly string s_carsPath = s_workingDir + "Cars.txt";
-        private static readonly string s_motorBoatsPath = s_workingDir + "MotorBoats.txt";
+        private static readonly string s_carsPath = string.Empty;
+        private static readonly string s_motorBoatsPath = string.Empty;
         private static readonly Encoding s_writeEncoding = Encoding.Unicode;
+
+        /// <summary>
+        /// Initializes a full path to the files for cars' and motor boats' data.
+        /// </summary>
+        static Writer()
+        {
+            DirectoryInfo directoryInfo = new DirectoryInfo(AppContext.BaseDirectory);
+            while (directoryInfo != null
+                && directoryInfo.Exists
+                && directoryInfo.GetFiles("*.sln").Length == 0)
+            {
+                directoryInfo = directoryInfo.Parent;
+            }
+
+            s_carsPath = directoryInfo.FullName + Path.DirectorySeparatorChar + "Cars.txt";
+            s_motorBoatsPath = directoryInfo.FullName + Path.DirectorySeparatorChar + "MotorBoats.txt";
+        }
 
         /// <summary>
         /// Represents method for writing List with transports to the files.
