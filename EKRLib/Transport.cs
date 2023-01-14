@@ -69,24 +69,5 @@ namespace EKRLib
         [return: NotNull]
         public override string ToString()
             => $"Model: {_model}, Power: {_power}";
-
-        public override int GetHashCode()
-            => _model.GetHashCode() ^ _power.GetHashCode();
-
-        public override bool Equals(object obj)
-        {
-            if (obj == null || obj is not Transport transport)
-            {
-                return false;
-            }
-
-            if (transport.GetHashCode() != GetHashCode())
-            {
-                return false;                
-            }
-
-            return transport.Power == _power
-                && transport.Model == _model;
-        }
     }
 }
