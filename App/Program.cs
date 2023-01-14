@@ -61,6 +61,6 @@ namespace App
             => Console.WriteLine("\nНажмите Escape для выхода или нажмите любую другую клавишу для продолжения.\n");
 
         private void PrintExitMessage()
-            => Console.WriteLine("\nРабота программы была завершена, благодарим за использование.");
+            => Console.WriteLine("Работа программы была завершена, благодарим за использование.");
     }
 }
