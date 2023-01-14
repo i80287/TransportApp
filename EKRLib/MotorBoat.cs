@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace EKRLib
 {
     /// <summary>
@@ -14,7 +16,7 @@ namespace EKRLib
         /// <exception cref="TransportException">
         /// Thrown if model or power are in the incorrect format.
         /// </exception>
-        public MotorBoat(string model, uint power)
+        public MotorBoat([DisallowNull] string model, uint power)
             : base(model, power)
         {
         }
@@ -23,6 +25,7 @@ namespace EKRLib
         /// Starts <see cref="MotorBoat"/> engine.
         /// </summary>
         /// <returns>Engine's sound.</returns>
+        [return: NotNull]
         public override string StartEngine()
             => $"{Model}: Brrrbr";
 

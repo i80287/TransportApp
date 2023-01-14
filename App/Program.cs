@@ -19,8 +19,9 @@ namespace App
                 .PrintExitMessage();
 
         /// <summary>
-        /// Represents a method with main program loop.
+        /// Starts main program loop.
         /// </summary>
+        /// <returns>Reference to the <see cref="Program"/> instance.</returns>
         public Program StartProgramLoop()
         {
             Generator generator = new Generator();
@@ -51,15 +52,24 @@ namespace App
                 }
 
                 Writer.WriteTransport(transports);
-                AnswerToContinue();
             }
-            while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+            while (AskToContinue());
             return this;
         }
 
-        private void AnswerToContinue()
-            => Console.WriteLine("\nНажмите Escape для выхода или нажмите любую другую клавишу для продолжения.\n");
-
+        /// <summary>
+        /// Asks user to continue program execution.
+        /// </summary>
+        /// <returns>True if execution should be continued. Otherwise, false.</returns>
+        private bool AskToContinue()
+        {
+            Console.WriteLine("\nНажмите Escape для выхода или нажмите любую другую клавишу для продолжения.\n");
+            return Console.ReadKey(true).Key != ConsoleKey.Escape;
+        }
+            
+        /// <summary>
+        /// Prints exit message.
+        /// </summary>
         private void PrintExitMessage()
             => Console.WriteLine("Работа программы была завершена, благодарим за использование.");
     }

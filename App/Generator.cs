@@ -69,9 +69,9 @@ namespace App
             => (uint)random.Next(MinPower, MaxPowerExcluding);
 
         /// <summary>
-        /// Returns string with <see cref="Transport"/> model name. Length is <see cref="Transport.ModelStringLength"/>
+        /// Returns string with <see cref="Transport"/> model name. THe length is the <see cref="Transport.ModelStringLength"/>
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Random <see cref="Transport"/> model name.</returns>
         [return: NotNull]
         internal string GetRandomModelString()
         {

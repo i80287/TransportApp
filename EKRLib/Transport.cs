@@ -22,7 +22,7 @@ namespace EKRLib
         /// <exception cref="TransportException">
         /// Thrown if model or power are in the incorrect format.
         /// </exception>
-        public Transport(string model, uint power)
+        public Transport([DisallowNull] string model, uint power)
         {
             Model = model;
             Power = power;
@@ -38,7 +38,7 @@ namespace EKRLib
         public string Model
         {
             get => _model;
-            set => _model =
+            protected set => _model =
                 value?.Length == ModelStringLength ?
                 value :
                 throw new TransportException($"Недопустимая модель {value}");
@@ -53,7 +53,7 @@ namespace EKRLib
         public uint Power
         {
             get => _power;
-            set => _power =
+            protected set => _power =
                 value >= MinEnginePower ?
                 value :
                 throw new TransportException("мощность не может быть меньше 20 л.с.");
@@ -63,8 +63,10 @@ namespace EKRLib
         /// Abstract method to start <see cref="Transport"/> engine.
         /// </summary>
         /// <returns>Engine's sound.</returns>
+        [return: NotNull]
         public abstract string StartEngine();
 
+        [return: NotNull]
         public override string ToString()
             => $"Model: {_model}, Power: {_power}";
 
