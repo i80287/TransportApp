@@ -14,12 +14,14 @@ namespace App
         /// </summary>
         /// <param name="args">Array with arguments from the console.</param>
         private static void Main(string[] args)
-            => new Program().StartProgramLoop();
+            => new Program()
+                .StartProgramLoop()
+                .PrintExitMessage();
 
         /// <summary>
         /// Represents a method with main program loop.
         /// </summary>
-        public void StartProgramLoop()
+        public Program StartProgramLoop()
         {
             Generator generator = new Generator();
             do
@@ -50,8 +52,9 @@ namespace App
 
                 Writer.WriteTransport(transports);
                 AnswerToContinue();
-            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
-            PrintExitMessage();
+            }
+            while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+            return this;
         }
 
         private void AnswerToContinue()
