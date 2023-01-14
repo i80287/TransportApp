@@ -27,7 +27,7 @@ namespace EKRLib
         /// <returns>Engine's sound.</returns>
         [return: NotNull]
         public override string StartEngine()
-            => $"{Model}: Brrrbr";
+            => $"{Model}: Brrrbrr";
 
         public override string ToString()
             => "MotorBoat. " + base.ToString();
