@@ -77,6 +77,7 @@ namespace App
             // Быстрый проход по коллекции List при помощи спана и управляемого (безопасного) указателя.
             Span<Transport> transportsSpan = CollectionsMarshal.AsSpan(transports);
             ref Transport transpManagedPointer = ref MemoryMarshal.GetReference(transportsSpan);
+
             for (int i = 0; i < transportsSpan.Length; ++i)
             {
                 Transport transport = Unsafe.Add(ref transpManagedPointer, i);
