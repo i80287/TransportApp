@@ -36,7 +36,7 @@ namespace EKRLib
         /// This property can be initialized only once in the constructor.
         /// </remarks>
         /// <exception cref="TransportException">
-        /// Thrown if value is null or value length does not equal to <see cref="ModelNameLength"/>.
+        /// Thrown if value is null or value does not fit format.>.
         /// </exception>
         [DisallowNull]
         public string Model
@@ -90,7 +90,8 @@ namespace EKRLib
                 return false;
             }
 
-            return modelName.All(symbol => char.IsUpper(symbol) || char.IsDigit(symbol));
+            // Проверка того, что все символы строки - цифры или заглавные латинские буквы.
+            return modelName.All(symbol => ('0' <= symbol && symbol <= '9') || ('A' <= symbol && symbol <= 'Z'));
         }
     }
 }
