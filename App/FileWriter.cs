@@ -32,15 +32,18 @@ namespace App
                 directoryInfo = directoryInfo.Parent;
             }
 
+            directoryInfo = null;
             if (directoryInfo != null)
             {
-                s_carsPath = directoryInfo.FullName + Path.DirectorySeparatorChar + "Cars.txt";
-                s_motorBoatsPath = directoryInfo.FullName + Path.DirectorySeparatorChar + "MotorBoats.txt";
+                string fullPathToTheFiles = directoryInfo.FullName + Path.DirectorySeparatorChar;
+                s_carsPath = fullPathToTheFiles + "Cars.txt";
+                s_motorBoatsPath = fullPathToTheFiles + "MotorBoats.txt";
             }
             else
             {// Если в цикле перебор поднялся до корня файловой системы и не нашёл файл проекта с расширением .sln .
-                s_carsPath = AppContext.BaseDirectory + "Cars.txt";
-                s_motorBoatsPath = AppContext.BaseDirectory + "MotorBoats.txt";
+                string fullPathToTheDir = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", ".."));
+                s_carsPath = Path.Combine(fullPathToTheDir, "Cars.txt");
+                s_motorBoatsPath = Path.Combine(fullPathToTheDir, "MotorBoats.txt");
             }
         }
 
