@@ -31,8 +31,8 @@ namespace EKRLib
         /// </summary>
         /// <param name="message">Exception message.</param>
         /// <param name="inner">Inner exception for the stack trace.</param>
-        public TransportException(string message, Exception inner)
-            : base(message, inner)
+        public TransportException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
 
