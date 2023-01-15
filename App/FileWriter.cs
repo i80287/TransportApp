@@ -34,9 +34,8 @@ namespace App
 
             if (directoryInfo != null)
             {
-                string fullPathToTheFiles = directoryInfo.FullName + Path.DirectorySeparatorChar;
-                s_carsPath = fullPathToTheFiles + "Cars.txt";
-                s_motorBoatsPath = fullPathToTheFiles + "MotorBoats.txt";
+                s_carsPath = Path.Combine(directoryInfo.FullName, "Cars.txt");
+                s_motorBoatsPath = Path.Combine(directoryInfo.FullName, "MotorBoats.txt");
             }
             else
             {// Если в цикле перебор поднялся до корня файловой системы и не нашёл файл проекта с расширением .sln .
