@@ -32,7 +32,6 @@ namespace App
                 directoryInfo = directoryInfo.Parent;
             }
 
-            directoryInfo = null;
             if (directoryInfo != null)
             {
                 string fullPathToTheFiles = directoryInfo.FullName + Path.DirectorySeparatorChar;
