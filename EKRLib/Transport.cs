@@ -15,8 +15,8 @@ namespace EKRLib
         private uint _power = 0U;
 
         /// <summary>
-        /// Initializes a new instance of the class inherited from the abstract <see cref="Transport"/>
-        /// class with provided <paramref name="model"/> and <paramref name="power"/>.
+        /// Initializes a new instance of the class inherited from this abstract class
+        /// <see cref="Transport"/> with provided <paramref name="model"/> and <paramref name="power"/>.
         /// </summary>
         /// <param name="model"></param>
         /// <param name="power"></param>
