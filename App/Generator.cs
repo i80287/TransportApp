@@ -36,19 +36,19 @@ namespace App
         /// Returns one of <see cref="Car"/> or <see cref="MotorBoat"/> classes that is selected equally likely.
         /// </summary>
         /// <returns>
-        /// One of <see cref="Car"/> or <see cref="MotorBoat"/> classes inherited from the base class <see cref="Transport"/>.
+        /// One of <see cref="Car"/> or <see cref="MotorBoat"/> classes inherited from the base abstract class <see cref="Transport"/>.
         /// </returns>
+        /// <exception cref="TransportException">
+        /// Thrown if power or modelName are in the incorrect format.
+        /// </exception>
         [return: NotNull]
-        public Transport GetRandomTransport()
-        {
-            uint power = GetRandomPower();
-            string model = GetRandomModelString();
-            return random.Next(2) switch
-            {
-                0 => new Car(model, power),
-                _ => new MotorBoat(model, power),
-            };
-        }
+        public Transport GetRandomTransport([DisallowNull] string modelName, uint power)
+            => random.Next(2) switch
+                {
+                    0 => new Car(modelName, power),
+                    _ => new MotorBoat(modelName, power),
+                };
+        
 
         /// <summary>
         /// Returns a random length for the List with <see cref="Transport"/>.
@@ -65,7 +65,7 @@ namespace App
         /// <returns>
         /// Random 32-bit unsigned integer from <see cref="MinPower"/> to <see cref="MaxPowerExcluding"/> excluding right border.
         /// </returns>
-        internal uint GetRandomPower()
+        public uint GetRandomPower()
             => (uint)random.Next(MinPower, MaxPowerExcluding);
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace App
         /// </summary>
         /// <returns>Random <see cref="Transport"/> model name.</returns>
         [return: NotNull]
-        internal string GetRandomModelString()
+        public string GetRandomModelString()
         {
             // Проверка, что указанная в классе Transport константа является корректной длиной.
             // Debug.Assert будет проводить проверку только в отладочной сборке (дебаг режим).

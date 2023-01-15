@@ -33,9 +33,11 @@ namespace App
                 while (transports.Count < length)
                 {
                     Transport transport;
+                    string model = generator.GetRandomModelString();
+                    uint power = generator.GetRandomPower();
                     try
                     {
-                        transport = generator.GetRandomTransport();
+                        transport = generator.GetRandomTransport(model, power);
                     }
                     catch (TransportException ex)
                     {
@@ -51,7 +53,7 @@ namespace App
                     Console.WriteLine(transport.StartEngine());
                 }
 
-                Writer.WriteTransport(transports);
+                FileWriter.WriteTransport(transports);
             }
             while (AskToContinue());
             return this;
