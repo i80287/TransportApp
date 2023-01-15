@@ -109,7 +109,7 @@ namespace App
             {
                 // Если файл уже существует, данные будут дописаны в конец.
                 File.AppendAllText(s_carsPath, cars.ToString(), s_writeEncoding);
-                Console.WriteLine($"Информация о машинах была сохранена в\n{s_carsPath}");
+                Console.WriteLine($"Информация о машинах была сохранена в{Environment.NewLine}{s_carsPath}");
             } catch
             {
                 Console.WriteLine($"При попытке записать данные о машинах произошла ошибка");
@@ -131,7 +131,7 @@ namespace App
             {
                 // Если файл уже существует, данные будут дописаны в конец.
                 File.AppendAllText(s_motorBoatsPath, motorBoats.ToString(), s_writeEncoding);
-                Console.WriteLine($"Информация о моторных лодках была сохранена в\n{s_motorBoatsPath}");
+                Console.WriteLine($"Информация о моторных лодках была сохранена в{Environment.NewLine}{s_motorBoatsPath}");
             } catch
             {
                 Console.WriteLine($"При попытке записать данные о моторных лодках произошла ошибка");

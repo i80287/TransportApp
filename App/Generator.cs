@@ -69,7 +69,7 @@ namespace App
             => (uint)random.Next(MinPower, MaxPowerExcluding);
 
         /// <summary>
-        /// Returns string with <see cref="Transport"/> model name. THe length is the <see cref="Transport.ModelStringLength"/>
+        /// Returns string with <see cref="Transport"/> model name. THe length is the <see cref="Transport.ModelNameLength"/>
         /// </summary>
         /// <returns>Random <see cref="Transport"/> model name.</returns>
         [return: NotNull]
@@ -77,18 +77,18 @@ namespace App
         {
             // Проверка, что указанная в классе Transport константа является корректной длиной.
             // Debug.Assert будет проводить проверку только в отладочной сборке (дебаг режим).
-            Debug.Assert(Transport.ModelStringLength >= 0);
-            char[] chars = new char[Transport.ModelStringLength];
-            for (int i = 0; i < Transport.ModelStringLength; ++i)
+            Debug.Assert(Transport.ModelNameLength >= 0);
+            char[] modelNameAsChars = new char[Transport.ModelNameLength];
+            for (int i = 0; i < Transport.ModelNameLength; ++i)
             {
-                chars[i] = random.Next(2) switch
+                modelNameAsChars[i] = random.Next(2) switch
                 {
                     0 => (char)random.Next('A', 'Z' + 1),
                     _ => (char)random.Next('0', '9' + 1),
                 };
             }
 
-            return new string(chars);
+            return new string(modelNameAsChars);
         }
     }
 }

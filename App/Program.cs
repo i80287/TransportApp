@@ -63,7 +63,10 @@ namespace App
         /// <returns>True if execution should be continued. Otherwise, false.</returns>
         private bool AskToContinue()
         {
-            Console.WriteLine("\nНажмите Escape для выхода или нажмите любую другую клавишу для продолжения.\n");
+            string report = Environment.NewLine +
+                            "Нажмите Escape для выхода или нажмите любую другую клавишу для продолжения." +
+                            Environment.NewLine;
+            Console.WriteLine(report);
             return Console.ReadKey(true).Key != ConsoleKey.Escape;
         }
             

@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace EKRLib
 {
@@ -7,7 +8,7 @@ namespace EKRLib
     /// </summary>
     public abstract class Transport
     {
-        public const int ModelStringLength = 5;
+        public const int ModelNameLength = 5;
         public const uint MinEnginePower = 20U;
 
         private string _model = string.Empty;
@@ -31,15 +32,18 @@ namespace EKRLib
         /// <summary>
         /// Represents a property with <see cref="Transport"/> model name.
         /// </summary>
+        /// <remarks>
+        /// This property can be initialized only once in the constructor.
+        /// </remarks>
         /// <exception cref="TransportException">
-        /// Thrown if value is null or value length does not equal to <see cref="ModelStringLength"/>.
+        /// Thrown if value is null or value length does not equal to <see cref="ModelNameLength"/>.
         /// </exception>
         [DisallowNull]
         public string Model
         {
             get => _model;
-            protected set => _model =
-                value?.Length == ModelStringLength ?
+            init => _model =
+                VerifyModelName(value) ?
                 value :
                 throw new TransportException($"Недопустимая модель {value}");
         }
@@ -47,13 +51,16 @@ namespace EKRLib
         /// <summary>
         /// Represents a property with <see cref="Transport"/> engine power.
         /// </summary>
+        /// <remarks>
+        /// This property can be initialized only once in the constructor.
+        /// </remarks>
         /// <exception cref="TransportException">
         /// Thrown if value is less then <see cref="MinEnginePower"/>.
         /// </exception>
         public uint Power
         {
             get => _power;
-            protected set => _power =
+            init => _power =
                 value >= MinEnginePower ?
                 value :
                 throw new TransportException("мощность не может быть меньше 20 л.с.");
@@ -69,5 +76,21 @@ namespace EKRLib
         [return: NotNull]
         public override string ToString()
             => $"Model: {_model}, Power: {_power}";
+        
+        /// <summary>
+        /// Represents a static method to verify <see cref="Model"/> initialization value.
+        /// </summary>
+        /// <param name="modelName">Model name.</param>
+        /// <returns>true if <paramref name="modelName"/> fits the format. Otherwise, false.</returns>
+        private static bool VerifyModelName(string modelName)
+        {
+            // Если modelName == null, то условие также будет ложно.
+            if (modelName?.Length != ModelNameLength)
+            {
+                return false;
+            }
+
+            return modelName.All(symbol => char.IsUpper(symbol) || char.IsDigit(symbol));
+        }
     }
 }
