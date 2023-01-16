@@ -32,7 +32,7 @@ namespace App
                 directoryInfo = directoryInfo.Parent;
             }
 
-            if (directoryInfo != null)
+            if (directoryInfo != null && directoryInfo.Exists)
             {
                 s_carsPath = Path.Combine(directoryInfo.FullName, "Cars.txt");
                 s_motorBoatsPath = Path.Combine(directoryInfo.FullName, "MotorBoats.txt");
