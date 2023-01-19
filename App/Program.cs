@@ -9,6 +9,11 @@ namespace App
     /// </summary>
     public sealed class Program
     {
+        private static readonly string s_askToContinueMessage = string.Format(
+            "{0}Нажмите Escape для выхода или нажмите любую другую клавишу для продолжения.{0}",
+            Environment.NewLine);
+        private static readonly string s_exitMessage = "Работа программы была завершена, благодарим за использование.";
+
         /// <summary>
         /// Represents program entry point.
         /// </summary>
@@ -65,10 +70,7 @@ namespace App
         /// <returns>True if execution should be continued. Otherwise, false.</returns>
         private bool AskToContinue()
         {
-            string report = Environment.NewLine +
-                            "Нажмите Escape для выхода или нажмите любую другую клавишу для продолжения." +
-                            Environment.NewLine;
-            Console.WriteLine(report);
+            Console.WriteLine(s_askToContinueMessage);
             return Console.ReadKey(true).Key != ConsoleKey.Escape;
         }
             
@@ -76,6 +78,6 @@ namespace App
         /// Prints exit message.
         /// </summary>
         private void PrintExitMessage()
-            => Console.WriteLine("Работа программы была завершена, благодарим за использование.");
+            => Console.WriteLine(s_exitMessage);
     }
 }
