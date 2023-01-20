@@ -39,7 +39,8 @@ namespace App
             }
             else
             {// Если в цикле перебор поднялся до корня файловой системы и не нашёл файл проекта с расширением .sln .
-                string fullPathToTheDir = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", ".."));
+                string fullPathToTheDir =Path.GetFullPath(Path.Combine(
+                    AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", ".."));
                 s_carsPath = Path.Combine(fullPathToTheDir, "Cars.txt");
                 s_motorBoatsPath = Path.Combine(fullPathToTheDir, "MotorBoats.txt");
             }
