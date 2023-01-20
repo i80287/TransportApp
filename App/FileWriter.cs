@@ -24,7 +24,7 @@ namespace App
         /// </summary>
         static FileWriter()
         {
-            DirectoryInfo currentDirInfo = new DirectoryInfo(AppContext.BaseDirectory);
+            DirectoryInfo currentDirInfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
             while (currentDirInfo != null
                 && currentDirInfo.Exists
                 && currentDirInfo.GetFiles("*.sln").Length == 0)
