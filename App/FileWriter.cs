@@ -24,18 +24,18 @@ namespace App
         /// </summary>
         static FileWriter()
         {
-            DirectoryInfo directoryInfo = new DirectoryInfo(AppContext.BaseDirectory);
-            while (directoryInfo != null
-                && directoryInfo.Exists
-                && directoryInfo.GetFiles("*.sln").Length == 0)
+            DirectoryInfo currentDirInfo = new DirectoryInfo(AppContext.BaseDirectory);
+            while (currentDirInfo != null
+                && currentDirInfo.Exists
+                && currentDirInfo.GetFiles("*.sln").Length == 0)
             {
-                directoryInfo = directoryInfo.Parent;
+                currentDirInfo = currentDirInfo.Parent;
             }
 
-            if (directoryInfo != null && directoryInfo.Exists)
+            if (currentDirInfo != null && currentDirInfo.Exists)
             {
-                s_carsPath = Path.Combine(directoryInfo.FullName, "Cars.txt");
-                s_motorBoatsPath = Path.Combine(directoryInfo.FullName, "MotorBoats.txt");
+                s_carsPath = Path.Combine(currentDirInfo.FullName, "Cars.txt");
+                s_motorBoatsPath = Path.Combine(currentDirInfo.FullName, "MotorBoats.txt");
             }
             else
             {// Если в цикле перебор поднялся до корня файловой системы и не нашёл файл проекта с расширением .sln .
